@@ -38,6 +38,9 @@ by: Lindy Castellaw, Glady Barrios, Jarrid Jones
 ___
 
 ## <a name="project_description"></a>Project Description:
+
+In Video games there are certain characteristics that make a videogame succesful. In this project we will investiage the certain variables that can achive a high rating in a video game. We will analize the data from IGDB and see the best rated vidogames and what makes them so sucessfull and high rating. to achive this we will analize videogame data and go through the data science pipe line, more specificly use classification models to able to predict video game ratings for future games.
+
 [[Back to top](#top)]
 
 ***
