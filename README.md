@@ -39,7 +39,7 @@ ___
 
 ## <a name="project_description"></a>Project Description:
 
-In Video games there are certain characteristics that make a videogame succesful. In this project we will investiage the certain variables that can achive a high rating in a video game. We will analize the data from IGDB and see the best rated vidogames and what makes them so sucessfull and high rating. to achive this we will analize videogame data and go through the data science pipe line, more specificly use classification models to able to predict video game ratings for future games.
+In Video games there are certain characteristics that make a videogame succesful such as high ratings. In this project we will investiage the certain variables that can create a high rating in a video game. We will analize the data from IGDB and investigate the best rated vidogames and what makes them so sucessfull. To achive this we will analize videogame data from Igdb and go through the data science pipe line, more specificly use classification models to able to predict video game ratings for future games.
 
 [[Back to top](#top)]
 
