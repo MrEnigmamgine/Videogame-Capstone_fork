@@ -37,8 +37,6 @@ by: Lindy Castellaw, Glady Barrios, Jarrid Jones
 [[Conclusion](#conclusion)]
 ___
 
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vR19fsVfxHvzjrp0kSMlzHlmyU0oeTTAcnTUT9dNe4wAEXv_2WJNViUa9qzjkvcpvkFeUCyatccINde/pub?w=1389&amp;h=410">
-
 ## <a name="project_description"></a>Project Description:
 [[Back to top](#top)]
 
