@@ -106,8 +106,8 @@ In Video games there are certain characteristics that make a videogame succesful
 ## <a name="explore"></a>Data Exploration:
 [[Back to top](#top)]
 - Python files used for exploration:
-    - wrangle.py 
-    - explore.py
+    - aquire.py 
+    - prepare.py
     - modeling.py
 
 
