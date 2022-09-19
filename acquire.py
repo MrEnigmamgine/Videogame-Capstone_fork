@@ -14,6 +14,7 @@ def connect_api():
     access_token = data['access_token']
     return access_token
 
+access_token = connect_api()
 
 def connect_to_games():
     headers = {'Client-ID': f'{Client_ID}', 'Authorization': f'Bearer {access_token}'}
@@ -25,6 +26,7 @@ def run_wrapper():
     wrapper = IGDBWrapper(f'{Client_ID}', f'{access_token}')
     return wrapper
 
+wrapper = run_wrapper()
 
 # function that puts response list object into a dataframe for each page
 def get_game_library(wrapper):
@@ -111,6 +113,98 @@ def get_game_modes(wrapper):
         results_df =pd.DataFrame(y)
         game_modes = pd.concat([game_modes, results_df])
     return game_modes
+
+def get_companies(wrapper):
+    companies= pd.DataFrame()
+    for i in range (0, 409):
+        company = wrapper.api_request('companies', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(company)
+        results_df =pd.DataFrame(y)
+        companies = pd.concat([companies, results_df])
+    return companies
+
+def get_multi_player_modes(wrapper):
+    multi_player_modes= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('multiplayer_modes', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        multi_player_modes = pd.concat([multi_player_modes, results_df])
+    return multi_player_modes
+
+def get_platform_families(wrapper):
+    platform_families= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('platform_families', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        platform_families = pd.concat([platform_families, results_df])
+    return platform_families
+
+def get_platform_version_release_dates(wrapper):
+    platform_version_release_dates= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('platform_version_release_dates', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        platform_version_release_dates = pd.concat([platform_version_release_dates, results_df])
+    return platform_version_release_dates
+
+def get_platform_version_companies(wrapper):
+    platform_version_release_companies= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('platform_version_companies', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        platform_version_release_companies = pd.concat([platform_version_release_companies, results_df])
+    return platform_version_release_companies
+
+def get_platforms(wrapper):
+    platforms= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('platforms', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        platforms = pd.concat([platforms, results_df])
+    return platforms
+
+def get_release_dates(wrapper):
+    release_dates= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('release_dates', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        release_dates = pd.concat([release_dates, results_df])
+    return release_dates
+
+def get_platform_versions(wrapper):
+    platform_versions= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('platform_versions', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        platform_versions = pd.concat([platform_versions, results_df])
+    return platform_versions
+
+def get_player_perspectives(wrapper):
+    player_perspectives= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('player_perspectives', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        player_perspectives = pd.concat([player_perspectives, results_df])
+    return player_perspectives
+
+def get_themes(wrapper):
+    themes= pd.DataFrame()
+    for i in range (0, 409):
+        modes = wrapper.api_request('themes', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(modes)
+        results_df =pd.DataFrame(y)
+        themes = pd.concat([themes, results_df])
+    return themes
+
+
 
 
 
