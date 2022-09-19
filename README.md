@@ -56,7 +56,7 @@ In Video games there are certain characteristics that make a videogame succesful
 
 
 ### Target variable
-
+Our target variable is to be able to idetify the diffrent variables that make a videogame have a high rating 
 
 ### Need to haves (Deliverables):
 
