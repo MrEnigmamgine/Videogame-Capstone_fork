@@ -41,8 +41,6 @@ df['platforms'] = df.platforms.apply(test_funct)
 
 
 
-
-
 #### for themes ###
 
 
@@ -97,3 +95,35 @@ def test_funct4(random_list):
 
 
 df['player_perspectives'] = pd.DataFrame(df.player_perspectives.apply(test_funct4))
+
+
+## for genres ##
+
+# function that puts response list object into a dataframe for each page
+def get_genres(wrapper):
+    genres = pd.DataFrame()
+    for i in range (0, 409):
+        genre = wrapper.api_request('genres', 'fields *; limit 500;')
+        y = json.loads(genre)
+        results_df =pd.DataFrame(y)
+        genres = pd.concat([genres, results_df])
+    return genres
+
+
+genres = get_genres(wrapper)
+# set index and dict
+genreslist = genres[['id' , 'slug']].sort_values(by='id').reset_index(drop=True)
+genres_dict = genreslist.set_index('id').to_dict()['slug']
+
+# run function
+def test_functg(random_list):
+    if type(random_list) == list:
+        return [genres_dict[i] for i in random_list]
+    else:  
+        return "Not available" 
+
+
+# apply function to games_library
+game_library['genres'] = pd.DataFrame(game_library.genres.apply(test_functg))
+
+
