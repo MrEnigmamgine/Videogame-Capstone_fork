@@ -204,6 +204,33 @@ def get_themes(wrapper):
         themes = pd.concat([themes, results_df])
     return themes
 
+def get_value_feature_values(wrapper):
+    get_value_feature_values= pd.DataFrame()
+    for i in range (0, 409):
+        gvf_values = wrapper.api_request('companies', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(gvf_values)
+        results_df =pd.DataFrame(y)
+        get_value_feature_values = pd.concat([get_value_feature_values, results_df])
+    return get_value_feature_values
+
+
+def get_game_v_features(wrapper):
+    get_game_v_features =pd.DataFrame()
+    for i in range(0,409):
+        game_version_features = wrapper.api_request('game_version_features', 'fields *;limit 500;')
+        y = json.loads(game_version_features)
+        results_df =pd.DataFrame(y)
+        get_game_v_features = pd.concat([get_game_v_features,results_df])
+    return  get_game_v_features
+
+def get_game_version(wrapper):
+    get_game_version = pd.DataFrame()
+    for i in range(0,409):
+        game_versions = wrapper.api_request('game_versions', 'fields *;limit 500;')
+        y = json.loads(game_versions)
+        results_df =pd.DataFrame(y)
+        get_game_version = pd.concat([get_game_version, results_df])
+    return get_game_version
 
 
 
