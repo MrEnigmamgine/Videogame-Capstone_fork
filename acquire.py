@@ -205,32 +205,64 @@ def get_themes(wrapper):
     return themes
 
 def get_value_feature_values(wrapper):
-    get_value_feature_values= pd.DataFrame()
+    game_version_feature_values= pd.DataFrame()
     for i in range (0, 409):
-        gvf_values = wrapper.api_request('companies', 'fields *; limit 500;' f'offset {i * 500};')
+        gvf_values = wrapper.api_request('game_version_feature_values', 'fields *; limit 500;' f'offset {i * 500};')
         y = json.loads(gvf_values)
         results_df =pd.DataFrame(y)
-        get_value_feature_values = pd.concat([get_value_feature_values, results_df])
-    return get_value_feature_values
+        game_version_feature_values = pd.concat([game_version_feature_values, results_df])
+    return game_version_feature_values
 
 
 def get_game_v_features(wrapper):
-    get_game_v_features =pd.DataFrame()
+    game_version_features =pd.DataFrame()
     for i in range(0,409):
-        game_version_features = wrapper.api_request('game_version_features', 'fields *;limit 500;')
-        y = json.loads(game_version_features)
+        game_version_feature = wrapper.api_request('game_version_features', 'fields *;limit 500;')
+        y = json.loads(game_version_feature)
         results_df =pd.DataFrame(y)
-        get_game_v_features = pd.concat([get_game_v_features,results_df])
-    return  get_game_v_features
+        game_version_features = pd.concat([game_version_features,results_df])
+    return  game_version_features
 
 def get_game_version(wrapper):
-    get_game_version = pd.DataFrame()
+    game_versions = pd.DataFrame()
     for i in range(0,409):
-        game_versions = wrapper.api_request('game_versions', 'fields *;limit 500;')
-        y = json.loads(game_versions)
+        game_version = wrapper.api_request('game_versions', 'fields *;limit 500;')
+        y = json.loads(game_version)
         results_df =pd.DataFrame(y)
-        get_game_version = pd.concat([get_game_version, results_df])
-    return get_game_version
+        game_versions = pd.concat([game_versions, results_df])
+    return game_versions
+
+def import_workbook():
+    # brings manually created workbook in notebook as list object
+    df_sheet_all = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name=None)
+    # following codes makes dataframes for each sheet in the workbook
+    age_ratings_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_category')
+    age_ratings_enums_rating = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_rating')
+    age_ratings_descriptions_enums_ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_descriptions_enums_')
+    character_enums_gender = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_gender')
+    character_enums_species = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_species')
+    company_enums_change_date_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_change_date_categ')
+    company_enums_start_date_catego = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_start_date_catego')
+    external_game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_category')
+    external_game_enums_media = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_media')
+    company_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_website_enums_category')
+    game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_category')
+    game_enums_status = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_status')
+    game_version_feature_eums_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_version_feature_eums_categ')
+    game_feature_value_enums_includ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_feature_value_enums_includ')
+    platform_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_enums_category')
+    platform_version_release_date_c = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_c')
+    platform_version_release_date_r = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_r')
+    release_date_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_category')
+    release_date_region = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_region')
+    platform_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_website_enums_category')
+    website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='website_enums_category')
+
+    return age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category
+
+# Use the code below to bring all sheets into notebook
+age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category = import_workbook()
+
 
 
 
