@@ -51,12 +51,20 @@ In Video games there are certain characteristics that make a videogame succesful
 
 
         
-### Hypothesis
+### Inital Questions
 
+-  Do video games on certain platforms get better user ratings?
+- what is the most common genre in games that are `subperb` (the highest rating)?
+  - what about the three lowest ratings ((bad, very bad , awful)) ? what is the overall most highest genre in these low rating games?
+  - what about the three highest ratings (good, great, subperb) ? what is the overall most highest genre?
+- what is the most common theme in games that are subperb (the highest rating)?
+  - what is the most common theme in games that are three highest ratings (good, great, subperb)?
+  - what is the most common theme in games that are three lowest ratings ((bad, very bad , awful)
+- Do users rate games with online multiplayer modes higher than games that lack online multiplayer modes?  
 
-
-### Target variable
-Our target variable is to be able to idetify the diffrent variables that make a videogame have a high rating 
+### Target variable?
+  
+  Our target variable is to be able to idetify the diffrent variables that make a videogame have a high rating 
 
 ### Need to haves (Deliverables):
 
@@ -108,7 +116,7 @@ Our target variable is to be able to idetify the diffrent variables that make a 
 - Python files used for exploration:
     - aquire.py 
     - prepare.py
-    - modeling.py
+    
 
 
 ### Takeaways from exploration:
