@@ -42,8 +42,8 @@ def get_game_library(wrapper):
 def get_genres(wrapper):
     genres = pd.DataFrame()
     for i in range (0, 409):
-        genres = wrapper.api_request('genres', 'fields *; limit 500;')
-        y = json.loads(games)
+        genre = wrapper.api_request('genres', 'fields *; limit 500;')
+        y = json.loads(genre)
         results_df =pd.DataFrame(y)
         genres = pd.concat([genres, results_df])
     return genres
@@ -122,6 +122,15 @@ def get_companies(wrapper):
         results_df =pd.DataFrame(y)
         companies = pd.concat([companies, results_df])
     return companies
+
+def get_involved_companies(wrapper):
+    involved_companies= pd.DataFrame()
+    for i in range (0, 409):
+        i_company = wrapper.api_request('involved_companies', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(i_company)
+        results_df =pd.DataFrame(y)
+        involved_companies = pd.concat([involved_companies, results_df])
+    return involved_companies
 
 def get_multi_player_modes(wrapper):
     multi_player_modes= pd.DataFrame()
@@ -204,24 +213,24 @@ def get_themes(wrapper):
         themes = pd.concat([themes, results_df])
     return themes
 
-def get_value_feature_values(wrapper):
-    game_version_feature_values= pd.DataFrame()
+def get_game_version_features(wrapper):
+    game_version_features = pd.DataFrame()
     for i in range (0, 409):
-        gvf_values = wrapper.api_request('game_version_feature_values', 'fields *; limit 500;' f'offset {i * 500};')
-        y = json.loads(gvf_values)
+        a_ratings = wrapper.api_request('game_version_features', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(a_ratings)
+        results_df =pd.DataFrame(y)
+        game_version_features = pd.concat([game_version_features, results_df])
+    return game_version_features
+
+
+def get_game_version_feature_values(wrapper):
+    game_version_feature_values = pd.DataFrame()
+    for i in range (0, 409):
+        a_ratings = wrapper.api_request('game_version_feature_values', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(a_ratings)
         results_df =pd.DataFrame(y)
         game_version_feature_values = pd.concat([game_version_feature_values, results_df])
     return game_version_feature_values
-
-
-def get_game_v_features(wrapper):
-    game_version_features =pd.DataFrame()
-    for i in range(0,409):
-        game_version_feature = wrapper.api_request('game_version_features', 'fields *;limit 500;')
-        y = json.loads(game_version_feature)
-        results_df =pd.DataFrame(y)
-        game_version_features = pd.concat([game_version_features,results_df])
-    return  game_version_features
 
 def get_game_version(wrapper):
     game_versions = pd.DataFrame()
