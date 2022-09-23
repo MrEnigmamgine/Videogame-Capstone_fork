@@ -119,9 +119,26 @@ In Video games there are certain characteristics that make a videogame succesful
 
 
 ### Takeaways from exploration:
+Question 1 - Do video games on certain platforms get better user ratings?
+  - Yes it looks like for the games in the three highest member ratings (good, great,subperb) the majority of those games are played on
+      - PC(microsoft Windows)
+      - MAC
+      - X-Box 360
+      - ps 3 and 4
+      
+Question 2 - what is the most common genre in games that are subperb (the highest rating)¶
+ - the most common Genre in the higest rating are adventure, role-playing- rpg, shoter, rts, racing
+ Question 2.1 - what about the three highest ratings (good, great, subperb) ? what is the overall most highest genre
+  - The higest raed genres are adventure, shooter, strategy, role-playing-rpg
+ Quesuestion 2.2 - what about the three lowest ratings ((bad, very bad , awful)) ? what is the overall most highest genre in these low rating games?
+  - The three lowest ratings are shooter, simulator, strategy, racing, arcade 
 
-
-
+Question 3 - What is the most common theme in games that are subperb (the highest rating) 
+  - the most common themes in the subperb is action, fantasy, science fiction, historical.
+  Question 3.1 - what is the most common theme in games that are three highest ratings (good, great, subperb)?
+    - the most themes in the three higest ratings are action, science fiction, Comedy
+  Question 3.2 - what is the most common theme in games that are three lowest ratings ((bad, very bad , awful))?
+    - the most common game these in the lowest ratings Action, Non-fiction, Science fiction and Not avalible 
 ***
 
 ## <a name="model"></a>Modeling:
