@@ -4,7 +4,7 @@
 ![]()
 Kalpana Cohort 2022
 
-by: Lindy Castellaw, Glady Barrios, Jarrid Jones 
+By: Lindy Castellaw, Glady Barrios, Jarrid Jones 
 
 <p>
   <a href="https://github.com/lindyc12" target="_blank">
