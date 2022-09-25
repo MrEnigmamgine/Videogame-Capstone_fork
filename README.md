@@ -66,8 +66,14 @@ In Video games there are certain characteristics that make a videogame succesful
   Our target variable is to be able to idetify the diffrent variables that make a videogame have a high rating 
 
 ### Need to haves (Deliverables):
+- First what is needed:
+  - Account Creation
+In order to use our API, you must have a Twitch Account.
+The IGDB.com API is free for non-commercial usage under the terms of the Twitch Developer Service Agreement.
+For more information on how to aquire this information on : https://api-docs.igdb.com/#about
 
-
+- Aquire.py 
+- Prepare.py
 
 ### Nice to haves (With more time):
 
