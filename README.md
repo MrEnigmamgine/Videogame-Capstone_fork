@@ -1,10 +1,10 @@
-
+<img src="igdb.jpeg" alt="drawing" width="150"/>
 
 # <a name="top"></a>Videogame-Capstone
 ![]()
 Kalpana Cohort 2022
 
-by: Lindy Castellaw, Glady Barrios, Jarrid Jones 
+By: Lindy Castellaw, Glady Barrios, Jarrid Jones 
 
 <p>
   <a href="https://github.com/lindyc12" target="_blank">
@@ -23,7 +23,21 @@ by: Lindy Castellaw, Glady Barrios, Jarrid Jones
     <img alt="Glady" src="https://img.shields.io/github/followers/GladyBarrios?label=Follow_Glady&style=social" />
   </a>
 </p>
+**Tools & Technologies Used:** 
 
+![](https://img.shields.io/static/v1?message=Python&logo=python&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=Pandas&logo=pandas&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=SciKit-Learn&logo=scikit-learn&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=SciPy&logo=scipy&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=NumPy&logo=numpy&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=MatPlotLib&logo=python&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=Seaborn&logo=python&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=Tableau&logo=tableau&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=Canva&logo=canva&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=Markdown&logo=markdown&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=GitHub&logo=github&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=JupyterLab&logo=jupyter&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
+![](https://img.shields.io/static/v1?message=Trello&logo=trello&labelColor=5c5c5c&color=blueviolet&logoColor=white&label=%20)
 
 ***
 [[Project Description](#project_description)]
@@ -32,7 +46,6 @@ by: Lindy Castellaw, Glady Barrios, Jarrid Jones
 [[Data Dictionary](#dictionary)]
 [[Data Acquire and Prep](#wrangle)]
 [[Data Exploration](#explore)]
-[[Statistical Analysis](#stats)]
 [[Modeling](#model)]
 [[Conclusion](#conclusion)]
 ___
@@ -67,8 +80,14 @@ In Video games there are certain characteristics that make a videogame succesful
   Our target variable is to be able to idetify the diffrent variables that make a videogame have a high rating 
 
 ### Need to haves (Deliverables):
+- First what is needed:
+  - Account Creation
+In order to use our API, you must have a Twitch Account.
+The IGDB.com API is free for non-commercial usage under the terms of the Twitch Developer Service Agreement.
+For more information on how to aquire this information on : https://api-docs.igdb.com/#about
 
-
+- Aquire.py 
+- Prepare.py
 
 ### Nice to haves (With more time):
 
@@ -120,67 +139,26 @@ In Video games there are certain characteristics that make a videogame succesful
 
 
 ### Takeaways from exploration:
+Question 1 - Do video games on certain platforms get better user ratings?
+  - Yes it looks like for the games in the three highest member ratings (good, great,subperb) the majority of those games are played on
+      - PC(microsoft Windows)
+      - MAC
+      - X-Box 360
+      - ps 3 and 4
+      
+Question 2 - what is the most common genre in games that are subperb (the highest rating)¶
+ - the most common Genre in the higest rating are adventure, role-playing- rpg, shoter, rts, racing
+ Question 2.1 - what about the three highest ratings (good, great, subperb) ? what is the overall most highest genre
+  - The higest raed genres are adventure, shooter, strategy, role-playing-rpg
+ Quesuestion 2.2 - what about the three lowest ratings ((bad, very bad , awful)) ? what is the overall most highest genre in these low rating games?
+  - The three lowest ratings are shooter, simulator, strategy, racing, arcade 
 
-
-***
-
-## <a name="stats"></a>Statistical Analysis
-[[Back to top](#top)]
-
-### Stats Test 1: ANOVA Test: One Way
-
-Analysis of variance, or ANOVA, is a statistical method that separates observed variance data into different components to use for additional tests. 
-
-A one-way ANOVA is used for three or more groups of data, to gain information about the relationship between the dependent and independent variables: in this case our clusters vs. the log_error, respectively.
-
-To run the ANOVA test in Python use the following import: \
-<span style="color:green">from</span> scipy.stats <span style="color:green">import</span> f_oneway
-
-- f_oneway, in this case, takes in the individual clusters and returns the f-statistic, f, and the p_value, p:
-    - the f-statistic is simply a ratio of two variances. 
-    - The p_vlaue is the probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct
-
-#### Hypothesis:
-- The null hypothesis (H<sub>0</sub>) is
-- The alternate hypothesis (H<sub>1</sub>) is 
-
-#### Confidence level and alpha value:
-- I established a 95% confidence level
-- alpha = 1 - confidence, therefore alpha is 0.05
-
-#### Results:
-
-
-#### Summary:
-
-
-### Stats Test 2: T-Test: One Sample, Two Tailed
-- A T-test allows me to compare a categorical and a continuous variable by comparing the mean of the continuous variable by subgroups based on the categorical variable
-- The t-test returns the t-statistic and the p-value:
-    - t-statistic: 
-        - Is the ratio of the departure of the estimated value of a parameter from its hypothesized value to its standard error. It is used in hypothesis testing via Student's t-test. 
-        - It is used in a t-test to determine if you should support or reject the null hypothesis
-        - t-statistic of 0 = H<sub>0</sub>
-    -  - the p-value:
-        - The probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct
-- We wanted to compare the individual clusters to the total population. 
-    - Cluster1 to the mean of ALL clusters
-    - Cluster2 to the mean of ALL clusters, etc.
-
-#### Hypothesis:
-- The null hypothesis (H<sub>0</sub>) is 
-- The alternate hypothesis (H<sub>1</sub>) is 
-
-#### Confidence level and alpha value:
-- I established a 95% confidence level
-- alpha = 1 - confidence, therefore alpha is 0.05
-
-
-#### Results:
-
-
-#### Summary:
-
+Question 3 - What is the most common theme in games that are subperb (the highest rating) 
+  - the most common themes in the subperb is action, fantasy, science fiction, historical.
+  Question 3.1 - what is the most common theme in games that are three highest ratings (good, great, subperb)?
+    - the most themes in the three higest ratings are action, science fiction, Comedy
+  Question 3.2 - what is the most common theme in games that are three lowest ratings ((bad, very bad , awful))?
+    - the most common game these in the lowest ratings Action, Non-fiction, Science fiction and Not avalible 
 ***
 
 ## <a name="model"></a>Modeling:
