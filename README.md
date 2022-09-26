@@ -552,20 +552,26 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 ## <a name="model"></a>Modeling:
 [[Back to top](#top)]
 
-### Model Preparation:
+### Model Preparation: 
+- Before modeling we had to drop addition columns and used Chi-Squared test for feature selection on the split data.
 
 ### Baseline
     
-- Baseline Results: 
+- Baseline Results: Mode of rating class "Alright" for a baseline of 0.27.
     
 
 - Selected features to input into models:
-    - features = []
+    - features = ['offlinemax', 'onlinecoop', 'onlinemax', 'shooter', 'indie', 'PC (Microsoft Windows)', 'PlayStation3', 'Xbox360', 'iOS', 'PlayStation4', 'Xbox one', 'Science Fiction', 'Fantasy', 'Historical', 'Stealth', 'Comedy', 'Open world', 'Third person', 'Bird view / Isometric', 'Side view']
 
 ***
 
 ### Models and R<sup>2</sup> Values:
-- Will run the following regression models:
+- Will run the following classification models:
+  - Random Forest
+  - Decision Tree
+  - Logistic Regression
+  - One Vs. Rest Classifier
+  - Naive Bayes
 
     
 
@@ -573,27 +579,25 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 
     
     
-#### Model 1: Linear Regression (OLS)
+#### Model 1: Random Forest
 
+- Model 1 results: on train data RF performed best with a max depth of 29 and accuracy of 0.79, for the validate set max depth 21 had the best accuracy of 0.40.
 
-- Model 1 results:
-
-
-
-### Model 2 : Lasso Lars Model
-
+### Model 2 : Decision Tree
 
 - Model 2 results:
 
-
-### Model 3 : Tweedie Regressor (GLM)
+### Model 3 : Logistic Regression
 
 - Model 3 results:
 
-
-### Model 4: Quadratic Regression Model
+### Model 4: One Vs. Rest
 
 - Model 4 results:
+
+### Model 5: Naive Bayes
+
+  - Model 5 results:
 
 
 ## Selecting the Best Model:
