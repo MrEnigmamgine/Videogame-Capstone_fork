@@ -571,7 +571,7 @@ Question 3 - What is the most common theme in games that are subperb (the highes
   - Decision Tree
   - Logistic Regression
   - One Vs. Rest Classifier
-  - Naive Bayes
+  - K-Nearest Neighbor
 
     
 
@@ -581,45 +581,51 @@ Question 3 - What is the most common theme in games that are subperb (the highes
     
 #### Model 1: Random Forest
 
-- Model 1 results: on train data RF performed best with a max depth of 29 and accuracy of 0.79, for the validate set max depth 21 had the best accuracy of 0.40.
+- Train data RF best perforance: max depth of 29 and accuracy of 0.79
+- Validate data RF best perforance: max depth 21 had accuracy of 0.40
 
 ### Model 2 : Decision Tree
 
-- Model 2 results:
+- Train data DT best perforance: max depth of 19 and accuracy of 0.59
+- Validate data DT best perforance: max depth 11 had accuracy of 0.37
 
 ### Model 3 : Logistic Regression
 
-- Model 3 results:
+- Train data LR best perforance: 0.34
+- Validate data LR best perforance: 0.34
 
 ### Model 4: One Vs. Rest
 
-- Model 4 results:
+- Train data LR best perforance: 0.37
+- Validate data LR best perforance: 0.35
 
-### Model 5: Naive Bayes
+### Model 5: KNN
 
-  - Model 5 results:
+- Train data KNN best perforance: max depth of 1 with an accuracy of 0.77
+- Validate data KNN best perforance: max depth of 18 with an accuracy of 0.35
 
 
-## Selecting the Best Model:
+## Selecting the Best Model: 
+  - The best performing model was Random Forest with a max depth of 21 on validate. That will be the model used on test data.
 
 ### Use Table below as a template for all Modeling results for easy comparison:
 
 | Model | Validation/Out of Sample RMSE | R<sup>2</sup> Value |
 | ---- | ----| ---- |
-| Baseline | 0.167366 | 2.2204 x 10<sup>-16</sup> |
-| Linear Regression (OLS) | 0.166731 | 2.1433 x 10<sup>-3</sup> |  
-| Tweedie Regressor (GLM) | 0.155186 | 9.4673 x 10<sup>-4</sup>|  
-| Lasso Lars | 0.166731 | 2.2204 x 10<sup>-16</sup> |  
-| Quadratic Regression | 0.027786 | 2.4659 x 10<sup>-3</sup> |  
+| Baseline | 0.279459 | 2.2204 x 10<sup>-16</sup> |
+| Random Forest (RF) | 0.398896 | 2.1433 x 10<sup>-3</sup> |  
+| Decision Tree (DT) | 0.373850 | 9.4673 x 10<sup>-4</sup>|  
+| Logistic Regression (LR) | 0.340456| 2.2204 x 10<sup>-16</sup> |  
+| K-Nearest Neighbor (KNN) | 0.358002 | 2.4659 x 10<sup>-3</sup> |  
+| One Vs. Rest | 0.356869 | 2.4659 x 10<sup>-3</sup> |
 
-
-- {} model performed the best
+- {Random Forest} model performed the best
 
 
 ## Testing the Model
 
 - Model Testing Results
-
+  - All the models beat baseline on train and validate, butRandom Forest preformed the best. We ran it on the test data set and beat baseline with an accuracy of 0.388625.
 ***
 
 ## <a name="conclusion"></a>Conclusion:
