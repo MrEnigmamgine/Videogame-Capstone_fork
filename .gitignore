@@ -3,3 +3,8 @@ env.py
 .ipynb_checkpoints/
 __pycache__
 games.csv
+game_ratings.json
+game_library.json
+explore_game_library.json
+games_nonrating.json
+*.json
