@@ -553,14 +553,14 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 [[Back to top](#top)]
 
 ### Model Preparation: 
-- Before modeling we had to drop addition columns and used Chi-Squared test for feature selection on the split data.
+- Before modeling we had to drop addition columns and used Chi-Squared test for feature selection on the split data. We also made datframes to hold the models predictions.
 
 ### Baseline
     
-- Baseline Results: Mode of rating class "Alright" for a baseline of 0.27.
+- Baseline Results: Mode of rating class "Alright" for a baseline of 0.27
     
 
-- Selected features to input into models:
+- Chi-Squared selected features:
     - features = ['offlinemax', 'onlinecoop', 'onlinemax', 'shooter', 'indie', 'PC (Microsoft Windows)', 'PlayStation3', 'Xbox360', 'iOS', 'PlayStation4', 'Xbox one', 'Science Fiction', 'Fantasy', 'Historical', 'Stealth', 'Comedy', 'Open world', 'Third person', 'Bird view / Isometric', 'Side view']
 
 ***
@@ -610,14 +610,14 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 
 ### Use Table below as a template for all Modeling results for easy comparison:
 
-| Model | Validation/Out of Sample RMSE | R<sup>2</sup> Value |
+| Model | Validation/Out of Sample accuracy | 
 | ---- | ----| ---- |
-| Baseline | 0.279459 | 2.2204 x 10<sup>-16</sup> |
-| Random Forest (RF) | 0.398896 | 2.1433 x 10<sup>-3</sup> |  
-| Decision Tree (DT) | 0.373850 | 9.4673 x 10<sup>-4</sup>|  
-| Logistic Regression (LR) | 0.340456| 2.2204 x 10<sup>-16</sup> |  
-| K-Nearest Neighbor (KNN) | 0.358002 | 2.4659 x 10<sup>-3</sup> |  
-| One Vs. Rest | 0.356869 | 2.4659 x 10<sup>-3</sup> |
+| Baseline | 0.279459 | 
+| Random Forest (RF) | 0.398896 |   
+| Decision Tree (DT) | 0.373850 |  
+| Logistic Regression (LR) | 0.340456|  
+| K-Nearest Neighbor (KNN) | 0.358002 |   
+| One Vs. Rest | 0.356869 | 
 
 - {Random Forest} model performed the best
 
@@ -625,7 +625,7 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 ## Testing the Model
 
 - Model Testing Results
-  - All the models beat baseline on train and validate, butRandom Forest preformed the best. We ran it on the test data set and beat baseline with an accuracy of 0.388625.
+  - All the models beat baseline on train and validate with feature selection and without. The models did slightly better with all of the features created in our dataset, instead of limiting them with Chi-Squared. Random Forest preformed the best on validate both with the feature selection and without. We ran it on the test data set and beat baseline with an accuracy of 0.388625
 ***
 
 ## <a name="conclusion"></a>Conclusion:
