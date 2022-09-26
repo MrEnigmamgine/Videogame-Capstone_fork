@@ -611,7 +611,7 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 ### Use Table below as a template for all Modeling results for easy comparison:
 
 | Model | Validation/Out of Sample accuracy | 
-| ---- | ----| ---- |
+| ---- | ----| 
 | Baseline | 0.279459 | 
 | Random Forest (RF) | 0.398896 |   
 | Decision Tree (DT) | 0.373850 |  
