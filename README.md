@@ -42,7 +42,6 @@ By: Lindy Castellaw, Glady Barrios, Jarrid Jones
 ***
 [[Project Description](#project_description)]
 [[Project Planning](#planning)]
-[[Key Findings](#findings)]
 [[Data Dictionary](#dictionary)]
 [[Data Acquire and Prep](#wrangle)]
 [[Data Exploration](#explore)]
@@ -91,13 +90,6 @@ For more information on how to aquire this information on : https://api-docs.igd
 - Env.py
 
 ### Nice to haves (With more time):
-
-
-
-***
-
-## <a name="findings"></a>Key Findings:
-[[Back to top](#top)]
 
 
 
