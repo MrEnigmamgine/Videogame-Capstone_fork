@@ -565,7 +565,7 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 
 ***
 
-### Models and R<sup>2</sup> Values:
+### Models:
 - Will run the following classification models:
   - Random Forest
   - Decision Tree
