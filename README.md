@@ -485,18 +485,6 @@ For more information on how to aquire this information on : https://api-docs.igd
 | updated_at                                              | Unix Time Stamp                             | The last date this entry was updated in the IGDB database                                 |
 | url                                                     | String                                      | The website address (URL) of the item                                                     |
 
-[[Back to top](#top)]
-
-### Data Used
----
-| Attribute | Definition | Data Type |
-| ----- | ----- | ----- |
-| | | |
-| | | |
-| | | |
-| | | |
-| | | |
-| | | |
 
 ***
 
