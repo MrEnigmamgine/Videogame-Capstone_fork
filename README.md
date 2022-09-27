@@ -96,7 +96,11 @@ For more information on how to aquire this information on : https://api-docs.igd
 
 ***
 
-## <a name="dictionary"></a>Data Dictionary  
+## <a name="dictionary"></a>Data Dictionary 
+
+<details>
+  <summary>Click to expand!</summary>
+
 | **Age Rating**                                          |                                             | https://api.igdb.com/v4/age_ratings                                                       |
 |---------------------------------------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------|
 | **field**                                               | **type**                                    | **description**                                                                           |
@@ -476,7 +480,7 @@ For more information on how to aquire this information on : https://api-docs.igd
 | slug                                                    | String                                      | A url-safe, unique, lower-case version of the name                                        |
 | updated_at                                              | Unix Time Stamp                             | The last date this entry was updated in the IGDB database                                 |
 | url                                                     | String                                      | The website address (URL) of the item                                                     |
-
+</details>
 
 ***
 
