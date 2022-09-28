@@ -559,8 +559,7 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 
     
 
-- Other indicators of model performance with breif defiition and why it's important:
-
+- For the models it was important that features of games (player perspective, genres, themes, ect.) be turned into their own binary columns, as well as converting any boolean columns. Doing this will greatly help the models predictions.
     
     
 #### Model 1: Random Forest
@@ -609,9 +608,11 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 ## Testing the Model
 
 - Model Testing Results
-  - All the models beat baseline on train and validate with feature selection and without. The models did slightly better with all of the features created in our dataset, instead of limiting them with Chi-Squared. Random Forest preformed the best on validate both with the feature selection and without. We ran it on the test data set and beat baseline with an accuracy of 0.388625
+  - All the models beat baseline on train and validate. We trained all of the models in two rounds; the first using Chi-Squared feature selection and the second without using it. All of the models preformed marginally better when trained with with all of the features we created in our dataset. Random Forest preformed the best on validate both with the feature selection and without. We ran it on the test data set and beat baseline with an accuracy of 0.388625
 ***
 
 ## <a name="conclusion"></a>Conclusion:
+
+- After acquiring data from the IGDB API we were able to build five classification models that were trained on games with ratings, and all were able to beat the baseline. We used the model with the highest accuracy, Random Forest, to predict what class games without ratings would have based on their features. Having this insight will greatly improve any video games that will be made in the feature in regards to user ratings.
 [[Back to top](#top)]
 
