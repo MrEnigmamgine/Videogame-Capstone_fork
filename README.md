@@ -621,5 +621,6 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 - Next we would like to acquire more features from other API's like critic ratings and play through length to merge into the game_library dataframe, and giving the models even better accuracy.
 - Exploring games with low ratings to see what features contribute to low performance for game reviews.
 - Use NLP on reviews to better understand user/critic tone.
+- Use regression models to predict numeric ratings.
 
 [[Back to top](#top)]
