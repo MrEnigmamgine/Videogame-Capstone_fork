@@ -608,11 +608,18 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 ## Testing the Model
 
 - Model Testing Results
-  - All the models beat baseline on train and validate. We trained all of the models in two rounds; the first using Chi-Squared feature selection and the second without using it. All of the models preformed marginally better when trained with with all of the features we created in our dataset. Random Forest preformed the best on validate both with the feature selection and without. We ran it on the test data set and beat baseline with an accuracy of 0.388625
+  - All the models beat baseline on train, validate and test. We trained all of the models in two rounds; the first using Chi-Squared feature selection and the second without using it. All of the models preformed marginally better when trained with with all of the features we created in our dataset. Random Forest preformed the best on validate both with the feature selection and without. We ran it on the test data set and beat baseline with an accuracy of 0.388625
 ***
 
 ## <a name="conclusion"></a>Conclusion:
 
 - After acquiring data from the IGDB API we were able to build five classification models that were trained on games with ratings, and all were able to beat the baseline. We used the model with the highest accuracy, Random Forest, to predict what class games without ratings would have based on their features. Having this insight will greatly improve any video games that will be made in the feature in regards to user ratings.
-[[Back to top](#top)]
 
+
+## Next Steps: 
+
+- Next we would like to acquire more features from other API's like critic ratings and play through length to merge into the game_library dataframe, and giving the models even better accuracy.
+- Exploring games with low ratings to see what features contribute to low performance for game reviews.
+- Use NLP on reviews to better understand user/critic tone.
+
+[[Back to top](#top)]
