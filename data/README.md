@@ -1,0 +1,1 @@
+This is a folder of cache data. Do not overwrite.
