@@ -499,12 +499,12 @@ Account Creation
 Create env.py and .gitignore
   - In env.py have a the following lines of code:
     ```python
-Client_ID = "Your_uniqe_Client_ID"
+        Client_ID = "Your_uniqe_Client_ID"
 
-Client_Secret = "Your_unique_Client_Secret"
+        Client_Secret = "Your_unique_Client_Secret"
 
-def get_db_url():
-    return f'https://id.twitch.tv/oauth2/token?client_id={Client_ID}&client_secret={Client_Secret}&grant_type=client_credentials'
+        def get_db_url():
+            return f'https://id.twitch.tv/oauth2/token?client_id={Client_ID}&client_secret={Client_Secret}&grant_type=client_credentials'
 ```
 
 ### Wrangle steps: 
