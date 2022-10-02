@@ -488,7 +488,7 @@ For more information on how to aquire this information on : https://api-docs.igd
 [[Back to top](#top)]
 
 ![]()
-
+The very first step is to sign in or sign up for a free <a href="https://dev.twitch.tv/login" target="_blank">Twitch</a> 
 
 ### Wrangle steps: 
 
