@@ -511,6 +511,18 @@ Create env.py and .gitignore
   - Create a .gitignore just in case not cloning our repo to exclude env.py , *.json files.
 
   Acquire.py
+  - Import these libraries:
+    ```python
+        import requests
+        import env
+        import os
+        import pandas as pd
+        import json
+        from env import Client_ID
+        from igdb.wrapper import IGDBWrapper
+        import time
+    ```
+
   - Create a function that will connect to the API and retrives the access token with similar code:
     ```python
         def connect_api():
@@ -522,7 +534,62 @@ Create env.py and .gitignore
 
         access_token = connect_api()
     ```
-  
+  - Create function that will imput your Client ID and access token into a wrapper object:
+  ```python
+      def run_wrapper():
+      wrapper = IGDBWrapper(f'{Client_ID}', f'{access_token}')
+      return wrapper
+    
+      wrapper = run_wrapper()
+  ```
+- Create functions to go to each <a href="https://api-docs.igdb.com/#endpoints" target="_blank">endpoint</a> of the API. An example is  ``` get_game_library(wrapper) ```
+  ```python
+    def get_game_library(wrapper):
+    game_library = pd.DataFrame()
+    for i in range (0, 500):
+        games = wrapper.api_request('games', 'fields *; limit 500;' f'offset {i * 500};')
+        y = json.loads(games)
+        results_df =pd.DataFrame(y)
+        game_library = pd.concat([game_library, results_df])
+        time.sleep(1.0)
+    return game_library
+  ```
+
+- The API has some data that is feed into endpoints from reference tables that are not included. A spreadsheet workbook will need to be created. To save time from creating the workbook, a .xlsx file was uploaded to the repo. The function used to acquire the data tables that are not included in the API is:
+
+```python
+    def import_workbook():
+    # brings manually created workbook in notebook as list object
+    df_sheet_all = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name=None)
+    # following codes makes dataframes for each sheet in the workbook
+    age_ratings_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_category')
+    age_ratings_enums_rating = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_rating')
+    age_ratings_descriptions_enums_ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_descriptions_enums_')
+    character_enums_gender = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_gender')
+    character_enums_species = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_species')
+    company_enums_change_date_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_change_date_categ')
+    company_enums_start_date_catego = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_start_date_catego')
+    external_game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_category')
+    external_game_enums_media = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_media')
+    company_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_website_enums_category')
+    game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_category')
+    game_enums_status = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_status')
+    game_version_feature_eums_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_version_feature_eums_categ')
+    game_feature_value_enums_includ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_feature_value_enums_includ')
+    platform_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_enums_category')
+    platform_version_release_date_c = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_c')
+    platform_version_release_date_r = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_r')
+    release_date_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_category')
+    release_date_region = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_region')
+    platform_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_website_enums_category')
+    website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='website_enums_category')
+
+    return age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category
+
+    # Use the code below to bring all sheets into notebook
+    age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category = import_workbook()
+
+  ```
 
 
 ### Wrangle steps: 
