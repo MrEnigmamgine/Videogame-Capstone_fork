@@ -508,8 +508,21 @@ Create env.py and .gitignore
     ```
   - Make sure your newly genreated Client ID and Client Secret are in a string and save the file.
 
-  - Create a .gitignore just in case not cloning our repo to exclude env.py , *.json
+  - Create a .gitignore just in case not cloning our repo to exclude env.py , *.json files.
 
+  Acquire.py
+  - Create a function that will connect to the API and retrives the access token with similar code:
+    ```python
+        def connect_api():
+          url = env.get_db_url()
+          response = requests.post(url)
+          data = response.json()
+          access_token = data['access_token']
+          return access_token
+
+        access_token = connect_api()
+    ```
+  
 
 
 ### Wrangle steps: 
