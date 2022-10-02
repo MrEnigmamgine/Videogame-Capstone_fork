@@ -505,7 +505,12 @@ Create env.py and .gitignore
 
         def get_db_url():
             return f'https://id.twitch.tv/oauth2/token?client_id={Client_ID}&client_secret={Client_Secret}&grant_type=client_credentials'
-```
+    ```
+  - Make sure your newly genreated Client ID and Client Secret are in a string and save the file.
+
+  - Create a .gitignore just in case not cloning our repo to exclude env.py , *.json
+
+
 
 ### Wrangle steps: 
 
