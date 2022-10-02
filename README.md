@@ -488,7 +488,24 @@ For more information on how to aquire this information on : https://api-docs.igd
 [[Back to top](#top)]
 
 ![]()
-The very first step is to sign in or sign up for a free <a href="https://dev.twitch.tv/login" target="_blank">Twitch</a> 
+Account Creation
+- The first step is to sign in or sign up for a free <a href="https://dev.twitch.tv/login" target="_blank">Twitch</a>.
+- Ensure you have Two Factor Authentication <a href="https://www.twitch.tv/settings/security" target="_blank">enabled</a>.
+- <a href="https://dev.twitch.tv/console/apps/create" target="_blank">Register</a> your application
+- <a href="https://dev.twitch.tv/console/apps" target="_blank">Manage</a> your newly created application
+- Generate a Client Secret by pressing [New Secret]
+- Take note of the Client ID and Client Secret
+
+Create env.py and .gitignore
+  - In env.py have a the following lines of code:
+    ```python
+Client_ID = "Your_uniqe_Client_ID"
+
+Client_Secret = "Your_unique_Client_Secret"
+
+def get_db_url():
+    return f'https://id.twitch.tv/oauth2/token?client_id={Client_ID}&client_secret={Client_Secret}&grant_type=client_credentials'
+```
 
 ### Wrangle steps: 
 
