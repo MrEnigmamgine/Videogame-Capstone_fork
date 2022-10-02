@@ -510,7 +510,7 @@ Create env.py and .gitignore
 
   - Create a .gitignore just in case not cloning our repo to exclude env.py , *.json files.
 
-  Acquire.py
+Acquire.py
   - Import these libraries:
     ```python
         import requests
@@ -542,55 +542,156 @@ Create env.py and .gitignore
     
       wrapper = run_wrapper()
   ```
-- Create functions to go to each <a href="https://api-docs.igdb.com/#endpoints" target="_blank">endpoint</a> of the API. An example is  ``` get_game_library(wrapper) ```
+  The purpose of the wrapper object is to return data acquired from API into a json object.
+
+  - Create functions to go to each <a href="https://api-docs.igdb.com/#endpoints" target="_blank">endpoint</a> of the API. An example is  ``` get_game_library(wrapper) ```
+    ```python
+      def get_game_library(wrapper):
+      game_library = pd.DataFrame()
+      for i in range (0, 500):
+          games = wrapper.api_request('games', 'fields *; limit 500;' f'offset {i * 500};')
+          y = json.loads(games)
+          results_df =pd.DataFrame(y)
+          game_library = pd.concat([game_library, results_df])
+          time.sleep(1.0)
+      return game_library
+    ```
+
+  - The API has some data that is feed into endpoints from reference tables that are not included. An example is in the <a href="https://api-docs.igdb.com/#age-rating" target="_blank">Age Rating endpoint</a>, the column `category ` uses data from Age Ratings Enumns <a href="https://api-docs.igdb.com/#age-rating-enums" target="_blank">category</a> table to fill in the column.
+
+  A spreadsheet workbook will need to be created. To save time from creating the workbook, a .xlsx file was uploaded to the repo. The function used to acquire the data tables that are not included in the API is:
+
   ```python
-    def get_game_library(wrapper):
-    game_library = pd.DataFrame()
-    for i in range (0, 500):
-        games = wrapper.api_request('games', 'fields *; limit 500;' f'offset {i * 500};')
-        y = json.loads(games)
-        results_df =pd.DataFrame(y)
-        game_library = pd.concat([game_library, results_df])
-        time.sleep(1.0)
-    return game_library
+      def import_workbook():
+      # brings manually created workbook in notebook as list object
+      df_sheet_all = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name=None)
+      # following codes makes dataframes for each sheet in the workbook
+      age_ratings_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_category')
+      age_ratings_enums_rating = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_rating')
+      age_ratings_descriptions_enums_ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_descriptions_enums_')
+      character_enums_gender = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_gender')
+      character_enums_species = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_species')
+      company_enums_change_date_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_change_date_categ')
+      company_enums_start_date_catego = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_start_date_catego')
+      external_game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_category')
+      external_game_enums_media = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_media')
+      company_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_website_enums_category')
+      game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_category')
+      game_enums_status = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_status')
+      game_version_feature_eums_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_version_feature_eums_categ')
+      game_feature_value_enums_includ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_feature_value_enums_includ')
+      platform_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_enums_category')
+      platform_version_release_date_c = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_c')
+      platform_version_release_date_r = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_r')
+      release_date_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_category')
+      release_date_region = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_region')
+      platform_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_website_enums_category')
+      website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='website_enums_category')
+
+      return age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category
+
+      # Use the code below to bring all sheets into notebook
+      age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category = import_workbook()
+
+    ```
+  - Save acquire.py
+
+- Prepare.py
+
+  - Import these libraries:
+  ```python
+    import env
+    import pandas as pd
+    import json
+    from env import Client_ID
+    from igdb.wrapper import IGDBWrapper
+    import time
+    import acquire
+    import numpy as np
+    import seaborn as sns
   ```
-
-- The API has some data that is feed into endpoints from reference tables that are not included. A spreadsheet workbook will need to be created. To save time from creating the workbook, a .xlsx file was uploaded to the repo. The function used to acquire the data tables that are not included in the API is:
-
-```python
-    def import_workbook():
-    # brings manually created workbook in notebook as list object
-    df_sheet_all = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name=None)
-    # following codes makes dataframes for each sheet in the workbook
-    age_ratings_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_category')
-    age_ratings_enums_rating = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_enums_rating')
-    age_ratings_descriptions_enums_ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='age_ratings_descriptions_enums_')
-    character_enums_gender = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_gender')
-    character_enums_species = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='character_enums_species')
-    company_enums_change_date_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_change_date_categ')
-    company_enums_start_date_catego = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_enums_start_date_catego')
-    external_game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_category')
-    external_game_enums_media = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='external_game_enums_media')
-    company_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='company_website_enums_category')
-    game_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_category')
-    game_enums_status = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_enums_status')
-    game_version_feature_eums_categ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_version_feature_eums_categ')
-    game_feature_value_enums_includ = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='game_feature_value_enums_includ')
-    platform_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_enums_category')
-    platform_version_release_date_c = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_c')
-    platform_version_release_date_r = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_version_release_date_r')
-    release_date_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_category')
-    release_date_region = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='release_date_region')
-    platform_website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='platform_website_enums_category')
-    website_enums_category = pd.read_excel('manual_reference_data_tables_for_IGDB_API.xlsx', sheet_name='website_enums_category')
-
-    return age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category
-
-    # Use the code below to bring all sheets into notebook
-    age_ratings_enums_category , age_ratings_enums_rating , age_ratings_descriptions_enums_ , character_enums_gender , character_enums_species , company_enums_change_date_categ ,  company_enums_start_date_catego , external_game_enums_category , external_game_enums_media , company_website_enums_category, game_enums_category, game_enums_status, game_version_feature_eums_categ, game_feature_value_enums_includ , platform_enums_category , platform_version_release_date_c , platform_version_release_date_r , release_date_category , release_date_region , platform_website_enums_category , website_enums_category = import_workbook()
-
+  - Create a function that will import json object into notebook if json object is already saved in /data folder into a dictionary. If json not availble, fuction will acquire data from API endpoint and save as .json
+  ```python
+      def import_table(variable):
+        path = variable['path']
+        getter = variable['getter']
+        if not os.path.exists(path):
+            wrapper = acquire.run_wrapper()
+            df = getter(wrapper)
+            df = df.reset_index().drop(columns=['index'])
+            df.to_json(path)
+        else:
+            df = pd.read_json(path)
+        return df
   ```
+  - Create dictionary object that will have a keyword assoiated with a path and a function in the acquire.py 
 
+  ```python
+      config = {
+        'game_library' : {
+            'path' : 'data/game_library.json',
+            'getter': acquire.get_game_library
+        },
+        'genres' : {
+            'path' : 'data/genres.json',
+            'getter': acquire.get_genres
+        },
+        'age_ratings' : {
+            'path' : 'data/age_ratings.json',
+            'getter': acquire.get_age_ratings
+        },
+        'age_rating_desc' : {
+            'path' : 'data/age_rating_desc.json',
+            'getter': acquire.get_age_rating_desc
+        },
+        'collections' : {
+            'path' : 'data/collections.json',
+            'getter': acquire.get_collections
+        },
+        'game_modes' : {
+            'path' : 'data/game_modes.json',
+            'getter': acquire.get_game_modes
+        },
+        'multi_player_modes' : {
+            'path' : 'data/multi_player_modes.json',
+            'getter': acquire.get_multi_player_modes
+        },
+        'platforms' : {
+            'path' : 'data/platforms.json',
+            'getter': acquire.get_platforms
+        },
+        'platform_families' : {
+            'path' : 'data/platform_families.json',
+            'getter': acquire.get_platform_families
+        },
+        'player_perspectives' : {
+            'path' : 'data/player_perspectives.json',
+            'getter': acquire.get_player_perspectives
+        },
+        'themes' : {
+            'path' : 'data/themes.json',
+            'getter': acquire.get_themes
+        },
+        'game_engines' : {
+            'path' : 'data/game_engines.json',
+            'getter': acquire.get_game_engines
+        },
+        'age_rating_desc' : {
+            'path' : 'data/age_rating_desc.json',
+            'getter': acquire.get_age_rating_desc
+        },
+    }
+  ```
+  - Create a function that retrive all tables from the config dict
+  ```python
+      def get_tables():
+          tables = {}
+          for key, value in config.items():
+              tables[key] = import_table(value)
+              # print(f'Completed import for {key}')
+          return tables
+  ```
+  - 
 
 ### Wrangle steps: 
 

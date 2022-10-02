@@ -5,7 +5,7 @@ import pandas as pd
 import json
 from env import Client_ID
 from igdb.wrapper import IGDBWrapper
-
+import time
 
 def connect_api():
     url = env.get_db_url()
@@ -31,11 +31,12 @@ wrapper = run_wrapper()
 # function that puts response list object into a dataframe for each page
 def get_game_library(wrapper):
     game_library = pd.DataFrame()
-    for i in range (0, 409):
+    for i in range (0, 500):
         games = wrapper.api_request('games', 'fields *; limit 500;' f'offset {i * 500};')
         y = json.loads(games)
         results_df =pd.DataFrame(y)
         game_library = pd.concat([game_library, results_df])
+        time.sleep(1.0)
     return game_library
 
 # function that puts response list object into a dataframe 
