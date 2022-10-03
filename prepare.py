@@ -7,6 +7,7 @@ import time
 import acquire
 import numpy as np
 import seaborn as sns
+import os
 
 def import_table(variable):
         path = variable['path']
@@ -291,6 +292,10 @@ def wrangle_data():
         return df
     game_library = dlcs_col(game_library)
 
+    game_library['rating_bin'] = pd.cut(game_library.rating, 
+                           bins = [0,10,20, 30, 40, 50, 60, 70, 80, 90, 100],
+                           labels = ['awful','very_bad','bad','unimpressive','average','fair','alright','good','great', 'subperb'])
+
     cols_to_drop =  [
         'genres',
         'platforms',
@@ -300,7 +305,9 @@ def wrangle_data():
         'offlinemax' ,
         'offlinecoopmax',
         'onlinecoopmax',
-        'onlinemax'
+        'onlinemax',
+        'rating',
+        'age_ratings'
 
     ]
     game_library = game_library.drop(columns=cols_to_drop)
@@ -310,4 +317,9 @@ def wrangle_data():
             data[col].replace(False, 0, inplace=True)
 
     replace_booleans(game_library)
-    return game_library
+
+    game_ratings = game_library[game_library['rating_bin'].notnull()]
+    not_rated = game_library[game_library['rating_bin'].isnull()]
+
+    
+    return game_library , game_ratings , not_rated
