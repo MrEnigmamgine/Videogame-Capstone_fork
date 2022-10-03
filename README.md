@@ -691,9 +691,7 @@ Acquire.py
               # print(f'Completed import for {key}')
           return tables
   ```
-  - 
-
-### Wrangle steps: 
+  -  
 
 
 *********************
