@@ -742,7 +742,7 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 
 ### Baseline
     
-- Baseline Results: Mode of rating class "Alright" for a baseline of 0.27
+- Baseline Results: Mode of rating class "Alright" for a baseline of 0.28
     
 
 - Chi-Squared selected features:
@@ -765,13 +765,13 @@ Question 3 - What is the most common theme in games that are subperb (the highes
     
 #### Model 1: Random Forest
 
-- Train data RF best perforance: max depth of 29 and accuracy of 0.79
-- Validate data RF best perforance: max depth 21 had accuracy of 0.40
+- Train data RF best perforance: max depth of 27 and accuracy of 0.66
+- Validate data RF best perforance: max depth 15 had accuracy of 0.37
 
 ### Model 2 : Decision Tree
 
-- Train data DT best perforance: max depth of 19 and accuracy of 0.59
-- Validate data DT best perforance: max depth 11 had accuracy of 0.37
+- Train data DT best perforance: max depth of 29 and accuracy of 0.63
+- Validate data DT best perforance: max depth 9 had accuracy of 0.38
 
 ### Model 3 : Logistic Regression
 
@@ -780,27 +780,27 @@ Question 3 - What is the most common theme in games that are subperb (the highes
 
 ### Model 4: One Vs. Rest
 
-- Train data LR best perforance: 0.37
-- Validate data LR best perforance: 0.35
+- Train data LR best perforance: 0.34
+- Validate data LR best perforance: 0.34
 
 ### Model 5: KNN
 
-- Train data KNN best perforance: max depth of 1 with an accuracy of 0.77
-- Validate data KNN best perforance: max depth of 18 with an accuracy of 0.35
+- Train data KNN best perforance: max depth of 1 with an accuracy of 0.60
+- Validate data KNN best perforance: max depth of 23 with an accuracy of 0.34
 
 
 ## Selecting the Best Model: 
-  - The best performing model was Random Forest with a max depth of 21 on validate. That will be the model used on test data.
+  - The best performing model was Random Forest with a max depth of 15 on validate. That will be the model used on test data.
 
 ### Use Table below as a template for all Modeling results for easy comparison:
 
 | Model | Validation/Out of Sample accuracy | 
 | ---- | ----| 
-| Baseline | 0.279459 | 
-| Random Forest (RF) | 0.398896 |   
-| Decision Tree (DT) | 0.373850 |  
-| Logistic Regression (LR) | 0.340456|  
-| K-Nearest Neighbor (KNN) | 0.358002 |   
+| Baseline | 0.284647 | 
+| Random Forest (RF) | 0.369651 |   
+| Decision Tree (DT) | 0.346415	 |  
+| Logistic Regression (LR) | 0.344007|  
+| K-Nearest Neighbor (KNN) | 0.344148	 |   
 | One Vs. Rest | 0.356869 | 
 
 - {Random Forest} model performed the best
