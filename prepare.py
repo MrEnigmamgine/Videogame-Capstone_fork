@@ -202,7 +202,7 @@ def wrangle_data():
 
     game_library['player_perspectives'] = pd.DataFrame(game_library.player_perspectives.apply(convert_player_persectives_col))
 
-    players = ['First person', 'Third person', 'Bird view / Isometric', 'Text', 'Side view', 'Virtual Reality', 'Auditory'  'Drama']
+    players = ['First person', 'Third person', 'Bird view-Isometric', 'Text', 'Side view', 'Virtual Reality', 'Auditory'  'Drama']
     for player in players:
         game_library[player] = game_library['player_perspectives'].apply(my_list, word=player)
         
@@ -219,16 +219,16 @@ def wrangle_data():
 
     game_library['themes'] = pd.DataFrame(game_library.themes.apply(convert_themes_col))
 
-    themes = ['thriller', 'science-fiction', 'action', 'horror', 'survival',
-        'fantasy', 'historical', 'stealth', 'comedy', 'business', 'drama',
-        'non-fiction', 'kids', 'sandbox', 'open-world', 'warfare',
+    themes = ['thriller', 'Science-Fiction', 'Action', 'horror', 'survival',
+        'Fantasy', 'historical', 'stealth', 'comedy', 'business', 'drama',
+        'non-fiction', 'kids', 'sandbox', 'Open-World', 'warfare',
         '4x-explore-expand-exploit-and-exterminate', 'educational',
         'mystery', 'party', 'romance', 'erotic']
         
     for theme in themes:
         game_library[theme] = game_library['themes'].apply(my_list, word=theme)
 
-    game_library.drop(columns=['themes'], inplace=True)
+    #game_library.drop(columns=['themes'], inplace=True)
 
     # make a column for each platform
     platformslist = tables['platforms'][['id' , 'slug']].sort_values(by='id').reset_index(drop=True)
@@ -237,7 +237,7 @@ def wrangle_data():
         if type(random_list) == list:
             return [platforms_dict[i] for i in random_list]
         else:  
-            return 'Not available'
+            return ['Not available']
     platforms_dict[92] = 'Not available'
     game_library['platforms'] = pd.DataFrame(game_library.platforms.apply(convert_platforms))
     game_library
@@ -297,10 +297,7 @@ def wrangle_data():
                            labels = ['awful','very_bad','bad','unimpressive','average','fair','alright','good','great', 'subperb'])
 
     cols_to_drop =  [
-        'genres',
-        'platforms',
         'dlcs',
-        'player_perspectives',
         'game_modes',
         'offlinemax' ,
         'offlinecoopmax',
