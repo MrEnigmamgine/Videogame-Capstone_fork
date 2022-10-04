@@ -705,33 +705,36 @@ Acquire.py
 
 
 ### Takeaways from exploration:
-Question 1 - Do video games on certain platforms get better user ratings?
-  - Yes it looks like for the games in the three highest member ratings (good, great,subperb) the majority of those games are played on
-      - PC(microsoft Windows)
-      - MAC
-      - X-Box 360
-      - ps 3 and 4
-      
-Question 2 - what is the most common genre in games that are subperb (the highest rating)¶
- - the most common Genre in the higest rating are adventure, role-playing- rpg, shoter, rts, racing
+_Question 1 - Do video games on certain platforms get superb user ratings?_
+
+          - the most common platforms are `PC(microsoft Windows)`, `Play Station 4`, `X-Box one`, `Nintendo Switch`
  
- Question 2.1 - what about the three highest ratings (good, great, subperb) ? what is the overall most highest genre
-  - The higest raed genres are adventure, shooter, strategy, role-playing-rpg
+  Sub Question 1.1 - What about the three lowest ratings (bad, very bad, awful)?  
   
- Quesuestion 2.2 - what about the three lowest ratings ((bad, very bad , awful)) ? what is the overall most highest genre in these low rating games?
-  - The three lowest ratings are shooter, simulator, strategy, racing, arcade 
-
-Question 3 - What is the most common theme in games that are subperb (the highest rating) 
-
-  - the most common themes in the subperb is action, fantasy, science fiction, historical.
-  
-  Question 3.1 - what is the most common theme in games that are three highest ratings (good, great, subperb)?
-  
-    - the most themes in the three higest ratings are action, science fiction, Comedy
+          - PC (Microsoft Windows)
+          - MAC
+          - Nintendo Switch
     
-  Question 3.2 - what is the most common theme in games that are three lowest ratings ((bad, very bad , awful))?
+_Question 2 - what is the most common genre in games that are superb?¶_
+
+          - the most common platforms are `Indie`, `Adventure`, `Role-Playing-RPG`, `Shooter`
+ 
+   Sub Question 2.1 - What about the three lowest ratings (bad, very bad, awful)?
+      
+      
+         - Indie 
+         - adventure
+         - simulator
+         - indie  
+
+
+_Question 3 - What is the most common theme in games that are subperb (the highest rating)_ 
+
+         - the most common themes in the subperb is action, fantasy, science fiction, Open World.
+    
+  Question 3.1 - what is the most common theme in games that are three lowest ratings ((bad, very bad , awful))?
   
-    - the most common game these in the lowest ratings Action, Non-fiction, Science fiction and Not avalible 
+          - the most common game these in the lowest ratings Action, Science fiction, Horror, Fantasy 
 ***
 
 ## <a name="model"></a>Modeling:
