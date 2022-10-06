@@ -8,7 +8,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.multiclass import OneVsRestClassifier
-
+from prepare import train, X_train, X_validate, X_test, y_train, y_validate, y_test
 
 
 
@@ -39,60 +39,61 @@ def RF_model():
 
     #decision tree function 
     def DT_model():
-    metric = []
-
-    for i in range(1,30):
-        tree1 = DecisionTreeClassifier(max_depth=(i), random_state=123)
-
-    
-        tree1 = tree1.fit(X_train, y_train)
-    
-        in_sample_accuracy = tree1.score(X_train, y_train)
-    
-        out_of_sample_accuracy = tree1.score(X_validate, y_validate)
-    
-        output = {"max_depth": (i),
-            "train_accuracy": in_sample_accuracy,
-            "validate_accuracy": out_of_sample_accuracy}
+        metric = []
         
-        metric.append(output)
-    
-    DT_prediction = pd.DataFrame(metric)
-    DT_prediction["difference"] = DT_prediction.train_accuracy - DT_prediction.validate_accuracy
-    return DT_prediction
+        for i in range(1,30):
+            tree1 = DecisionTreeClassifier(max_depth=(i), random_state=123)
+
+        
+            tree1 = tree1.fit(X_train, y_train)
+        
+            in_sample_accuracy = tree1.score(X_train, y_train)
+        
+            out_of_sample_accuracy = tree1.score(X_validate, y_validate)
+        
+            output = {"max_depth": (i),
+                "train_accuracy": in_sample_accuracy,
+                "validate_accuracy": out_of_sample_accuracy}
+            
+            metric.append(output)
+        
+        DT_prediction = pd.DataFrame(metric)
+        DT_prediction["difference"] = DT_prediction.train_accuracy - DT_prediction.validate_accuracy
+        return DT_prediction
 
 
     # KNN function 
     def KNN_model():
-    metric_knn = []
-
-    for i in range(1,30):
-    # weights = ['uniform', 'density']
-        knn = KNeighborsClassifier(n_neighbors=(i), weights='uniform')
-
-
-    
-        knn = knn.fit(X_train, y_train)
-    
-        in_sample_accuracy = knn.score(X_train, y_train)
-    
-        out_of_sample_accuracy = knn.score(X_validate, y_validate)
-    
-        output = {"max_depth": (i),
-            "train_accuracy": in_sample_accuracy,
-            "validate_accuracy": out_of_sample_accuracy}
         
-        metric_knn.append(output)
-    
-    KNN_prediction2 = pd.DataFrame(metric_knn)
-    KNN_prediction2["difference"] = KNN_prediction2.train_accuracy - KNN_prediction2.validate_accuracy
-    return KNN_prediction2
+        metric_knn = []
+
+        for i in range(1,30):
+        # weights = ['uniform', 'density']
+            knn = KNeighborsClassifier(n_neighbors=(i), weights='uniform')
+
+
+        
+            knn = knn.fit(X_train, y_train)
+        
+            in_sample_accuracy = knn.score(X_train, y_train)
+        
+            out_of_sample_accuracy = knn.score(X_validate, y_validate)
+        
+            output = {"max_depth": (i),
+                "train_accuracy": in_sample_accuracy,
+                "validate_accuracy": out_of_sample_accuracy}
+            
+            metric_knn.append(output)
+        
+        KNN_prediction2 = pd.DataFrame(metric_knn)
+        KNN_prediction2["difference"] = KNN_prediction2.train_accuracy - KNN_prediction2.validate_accuracy
+        return KNN_prediction2
 
 
 
     #Logistic regression function
     def LR_model():
-    metrics_lr2 = []
+        metrics_lr2 = []
 
     for i in range(1,3):
     # weights = ['uniform', 'density']

@@ -22,13 +22,13 @@ import os
 
 def train_validate_test_split(df):
     '''
-    This function performs split on telco data, stratify churn.
+    This function performs split on game_ratings data, stratify rating_bin.
     Returns train, validate, and test dfs.
     '''
     train_validate, test = train_test_split(df, test_size=.2, 
-                                        random_state=123, stratify=df.rating_bin)
+                                        random_state=13, stratify=df.rating_bin)
     train, validate = train_test_split(train_validate, test_size=.3, 
-                                   random_state=123,  stratify=train_validate.rating_bin)
+                                   random_state=13,  stratify=train_validate.rating_bin)
 
     return train, validate, test
 

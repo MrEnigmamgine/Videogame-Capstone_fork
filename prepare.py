@@ -8,6 +8,7 @@ import acquire
 import numpy as np
 import seaborn as sns
 import os
+from sklearn.model_selection import train_test_split
 
 def import_table(variable):
         path = variable['path']
@@ -320,3 +321,22 @@ def wrangle_data():
 
     
     return game_library , game_ratings , not_rated
+
+game_library , game_ratings , not_rated = wrangle_data()
+
+def split(game_ratings, stratify_by='rating_bin'):
+          # split df into train_validate 
+          train_validate, test = train_test_split(game_ratings, test_size=.20, random_state=13)
+          train , validate = train_test_split(train_validate, test_size=.3, random_state=13)
+          X_train = train.drop(columns=['rating_bin'])
+          y_train = train[['rating_bin']]
+
+          X_validate = validate.drop(columns=['rating_bin'])
+          y_validate = validate[['rating_bin']]
+
+          X_test = test.drop(columns=['rating_bin'])
+          y_test = test[['rating_bin']]
+
+          return train, X_train, X_validate, X_test, y_train, y_validate, y_test
+
+train, X_train, X_validate, X_test, y_train, y_validate, y_test = split(game_ratings, stratify_by='rating_bin')
