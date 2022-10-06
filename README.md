@@ -691,9 +691,138 @@ Acquire.py
               # print(f'Completed import for {key}')
           return tables
   ```
-  -  
+  -  Create a function that will create new columns for list objects in a field
+  ```python
+      def my_list(column, word):
+        if word in column:
+            return 1
+        else:
+            return 0
+  ```
+  - Run the `get_tables()`
+  - Create  variable `to_keep` with a list object of columns to keep
+  - Add a pointer to the game library dictionary object
+    ```python 
+        game_library = tables['game_library']
+    ```
+  - Trim down to only columns we care about
+    ```python
+        game_library = game_library[to_keep].copy()
+    ```
+  - Convert `game_library['first_release_date']` to datatime object
+  - Add multiplayer_modes to game_library from the multiplayer_modes endpoint
+    ```python
+        tables['multi_player_modes'].rename(columns={'id': 'multi_player_mode_id'}, inplace=True)
+    # dataframe merging game_library and multi_player_modes with left join. 
+    game_library = pd.merge(
+            game_library, tables['multi_player_modes'], how='left', left_on = 'id', right_on = 'game'
+            ).drop(columns=[ 'game', 
+                            'checksum', 
+                            'multi_player_mode_id', 
+                            'platform'
+                            ])
+    ```
+  - Fill in null values and drop `multiplayer_modes`
+    ```python
+        # fill nulls with 0 or bool lean False
+    game_library['campaigncoop'].fillna(False, inplace = True)
+    game_library['dropin'].fillna(False, inplace = True)
+    game_library['lancoop'].fillna(False, inplace = True)
+    game_library['offlinecoop'].fillna(False, inplace = True)
+    game_library['offlinemax'].fillna(0, inplace = True)
+    game_library['onlinecoop'].fillna(False, inplace = True)
+    game_library['splitscreen'].fillna(False, inplace = True)
+    game_library['offlinecoopmax'].fillna(0, inplace = True)
+    game_library['onlinecoopmax'].fillna(0, inplace = True)
+    game_library['onlinemax'].fillna(0, inplace = True)
 
+    game_library.drop(columns=['multiplayer_modes'], inplace=True)
+    ```
+  - Make a dictionary for id and string to convert id to the nomenclature. Afterwards make new columns for each genre.
+    ```python
+        # Transform genres list to a list of strings instead of a list of ids
+        genres_list = tables['genres'][['id' , 'slug']].sort_values(by='id').reset_index(drop=True)
+        genres_dict = genres_list.set_index('id').to_dict()['slug']
+        def convert_genres_col(random_list):
+            if type(random_list) == list:
+                return [genres_dict[i] for i in random_list]
+            else:  
+                return ['Not available']
+        game_library['genres'] = pd.DataFrame(game_library.genres.apply(convert_genres_col))
+        # list of genres to add
+        genres = ['point-and-click', 'fighting', 'shooter', 'music', 'platform', 'puzzle', 'racing', 'real-time-strategy-rts', 'role-playing-rpg', 'simulator', 'sport', 'strategy', 'turn-based-strategy-tbs', 'tactical', 'hack-and-slash-beat-em-up', 'quiz-trivia', 'pinball', 'adventure', 'indie', 'arcade', 'visual-novel', 'card-and-board-game', 'moba']
+        # function to loop through column list and check for genre
+        for item in genres:
+            game_library[item] = game_library['genres'].apply(my_list, word=item)
+    ```
+  - above code block was utilized to transform columns `game_modes`, `player_perspectives`, `themes`, and `platforms`.
+  - Modified the `dlcs` column to a bootlean column with the following code:
+    ```python
+        # Modified DLC column
+    game_library['dlcs'] = game_library['dlcs'].fillna(0)
 
+    def dlcs_col(df):
+        game_library['has_dlcs'] = np.where(game_library.dlcs != 0, 1, 0)  
+        return df
+    game_library = dlcs_col(game_library)
+    ```
+  - The `ratings` column was used to create a new column `rating_bin` which contained the rating scale nomenclature.
+    ```python
+        game_library['rating_bin'] = pd.cut(game_library.rating, 
+                           bins = [0,10,20, 30, 40, 50, 60, 70, 80, 90, 100],
+                           labels = ['awful','very_bad','bad','unimpressive','average','fair','alright','good','great', 'subperb'])
+    ```
+  - Create a variable `cols_to_drop` with the list object containing 
+        ```python
+        'dlcs',
+        'game_modes',
+        'offlinemax' ,
+        'offlinecoopmax',
+        'onlinecoopmax',
+        'onlinemax',
+        'rating',
+        'age_ratings' 
+        ```
+  - Modify `game_libray` with the following:
+    ```python
+        game_library = game_library.drop(columns=cols_to_drop)
+    ```
+  - Create a function that will convert all True and False values as 0 and 1. Apply the fuction to `game_library`
+    ```python
+        def replace_booleans(data):
+        for col in data:
+            data[col].replace(True, 1, inplace=True)
+            data[col].replace(False, 0, inplace=True)
+
+        replace_booleans(game_library)
+    ```
+  - Create two data frames. One with valid observations in `rating_bin`, and another with null values in 'rating_bin'.
+    ```python
+        game_ratings = game_library[game_library['rating_bin'].notnull()]
+        not_rated = game_library[game_library['rating_bin'].isnull()]
+    ```
+  - Create a function with all the above code tasks into a function `wrangle_data()` that returns `game_library` , `game_ratings` , `not_rated`
+    ```python
+        game_library , game_ratings , not_rated = wrangle_data()
+    ```
+  - Split `game_ratings` into three data samples: train, validate, and test. Create variables `X_train` , `y_train` , `X_validate` , `y_validate` , `X_test`, and `y_test`.
+    ```python
+        def split(game_ratings, stratify_by='rating_bin'):
+          # split df into train_validate 
+          train_validate, test = train_test_split(game_ratings, test_size=.20, random_state=13)
+          train, validate = train_test_split(train_validate, test_size=.3, random_state=13)
+          X_train = train.drop(columns=['rating_bin'])
+          y_train = train[['rating_bin']]
+
+          X_validate = validate.drop(columns=['rating_bin'])
+          y_validate = validate[['rating_bin']]
+
+          X_test = test.drop(columns=['rating_bin'])
+          y_test = test[['rating_bin']]
+
+          return train, X_train, X_validate, X_test, y_train, y_validate, y_test
+    ```
+  
 *********************
 
 ## <a name="explore"></a>Data Exploration:
