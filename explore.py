@@ -41,7 +41,7 @@ def platforms_bar():
 
 
     fig = go.Figure(data=[go.Bar(
-        x=['PC (Microsoft Windows)', 'PlayStation4' , 'Xbox One' , 'Nintendo Switch'],
+        x=['PC (Microsoft Windows)', 'PlayStation4' , 'MAC' , 'Xbox One'],
         y=[121, 63, 44,  41],
         marker_color=colors # marker color can be a single color value or an iterable
     )])
